@@ -9,7 +9,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Doto:ROND,wght@0..100,100..900&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Doto:ROND,wght@0..100,100..900&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="is-loading">
@@ -69,8 +69,8 @@
       <circle cx="17.4" cy="25.6" r="2" fill="var(--accent)"/>
     </svg>
   </a>
-  <a class="pill-link" href="#services" data-target="services">Services</a>
   <a class="pill-link" href="#work" data-target="work">Work</a>
+  <a class="pill-link" href="#services" data-target="services">Services</a>
   <a class="pill-link" href="#team" data-target="team">Team</a>
   <a class="pill-link pill-cta" href="#contact" data-target="contact">Contact</a>
 </nav>
@@ -90,17 +90,11 @@
       <div class="orbit" role="list" aria-label="Services">
         <b class="arm" data-a="0" role="listitem"><i tabindex="0" aria-label="Content strategy"><em>Strategy</em></i></b>
         <b class="arm" data-a="90" role="listitem"><i tabindex="0" aria-label="Hooks and scripts"><em>Scripts</em></i></b>
-        <b class="arm" data-a="180" role="listitem"><i tabindex="0" aria-label="Video editing"><em>Editing</em></i></b>
+        <b class="arm" data-a="180" role="listitem"><i tabindex="0" aria-label="Story and video editing"><em>Story</em></i></b>
         <b class="arm" data-a="270" role="listitem"><i tabindex="0" aria-label="Scheduling and publishing"><em>Scheduling</em></i></b>
       </div>
 
-      <!-- MEDIA SLOT: hero portrait (transparent PNG cut-out works best). -->
-      <figure class="hero-figure slot" data-slot="assets/media/hero-portrait.png">
-        <img class="slot-media" src="assets/media/hero-portrait.png" alt="" onload="this.parentNode.classList.add('is-loaded')" onerror="this.remove()">
-        <span class="slot-label">hero-portrait.png</span>
-      </figure>
-
-      <!-- liquid-glass orb: shown until a hero portrait exists -->
+      <!-- liquid-glass orb -->
       <div class="hero-blob" aria-hidden="true">
         <span class="glass-orb"></span>
       </div>
@@ -205,12 +199,218 @@
     </div>
   </section>
 
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work" data-palette="work">
+    <div class="section-head">
+      <div class="section-head-top">
+        <span class="section-head-line" aria-hidden="true"></span>
+        <span class="section-number dot-text">01</span>
+      </div>
+      <h2 class="reveal">Our recent client work</h2>
+      <p class="section-sub reveal">Real brands, real deliverables — not a portfolio
+        of concepts.</p>
+    </div>
+
+    <div class="work-filters glass reveal" id="work-filters" role="tablist" aria-label="Filter work by category">
+      <span class="filter-blob" id="filter-blob" aria-hidden="true"></span>
+      <button class="filter-btn is-active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="documentary">Documentary &amp; Travel</button>
+      <button class="filter-btn" data-filter="education">Education</button>
+      <button class="filter-btn" data-filter="tech">Tech &amp; SaaS</button>
+      <button class="filter-btn" data-filter="hospitality">Hospitality</button>
+      <button class="filter-btn" data-filter="retail">Retail &amp; Lifestyle</button>
+      <button class="filter-btn" data-filter="government">Government &amp; Civic</button>
+      <button class="filter-btn" data-filter="professional">Professional Services</button>
+      <button class="filter-btn" data-filter="partner">Agency Partner</button>
+    </div>
+
+    <div class="work-grid" id="work-grid">
+
+      <article class="work-card glass reveal" data-category="documentary">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/ZoOMuQ95bJ0" target="_blank" rel="noopener noreferrer" aria-label="Watch Nadir On The Go on YouTube (opens in new tab)">
+          <div class="work-card-face wc-1 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/ZoOMuQ95bJ0/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Documentary &amp; Travel</span>
+            <h3>Nadir On The Go</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Cinematic travel-documentary storytelling in English &amp; Bangla,
+              for a multi-million-follower audience.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card work-card--tall glass reveal" data-category="education">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/HXGepJP7idI" target="_blank" rel="noopener noreferrer" aria-label="Watch ALOHA Bangladesh on YouTube (opens in new tab)">
+          <div class="work-card-face wc-2 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/HXGepJP7idI/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Education</span>
+            <h3>ALOHA Bangladesh</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Nationally recognized mental-arithmetic and kids' brain-development
+              brand — social content that speaks to parents.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card glass reveal" data-category="tech">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/30SXLKrk9Ao" target="_blank" rel="noopener noreferrer" aria-label="Watch iinteca on YouTube (opens in new tab)">
+          <div class="work-card-face wc-3 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/30SXLKrk9Ao/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Tech &amp; SaaS</span>
+            <h3>iinteca</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Explainer videos for an AI-enabled SaaS platform serving Australian
+              service businesses.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card work-card--small glass reveal" data-category="hospitality">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/4Duj7L-xuYA" target="_blank" rel="noopener noreferrer" aria-label="Watch Sandy Land Hotel &amp; Resort on YouTube (opens in new tab)">
+          <div class="work-card-face wc-4 has-thumb">
+            <img class="work-card-thumb work-card-thumb--zoom" src="https://img.youtube.com/vi/4Duj7L-xuYA/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Hospitality</span>
+            <h3>Sandy Land Hotel &amp; Resort</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Social content built to drive direct bookings for a hospitality
+              brand.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card glass reveal" data-category="government">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/JJa0xWixd-E" target="_blank" rel="noopener noreferrer" aria-label="Watch Mayor Ella Winnall on YouTube (opens in new tab)">
+          <div class="work-card-face wc-7 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/JJa0xWixd-E/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Government &amp; Civic</span>
+            <h3>Mayor Ella Winnall</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Civic communications and social content for the mayoral office of
+              Berri Barmera Council, South Australia.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card work-card--wide glass reveal" data-category="tech">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/tjKMuzdjyxE" target="_blank" rel="noopener noreferrer" aria-label="Watch CWS Platform on YouTube (opens in new tab)">
+          <div class="work-card-face wc-5 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/tjKMuzdjyxE/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Tech &amp; SaaS</span>
+            <h3>CWS Platform</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Social content for a digital coupons and discounts platform,
+              helping retailers sell more online.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card work-card--tall glass reveal" data-category="retail">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/xbktF6TNylM" target="_blank" rel="noopener noreferrer" aria-label="Watch The Fifth Design on YouTube (opens in new tab)">
+          <div class="work-card-face wc-6 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/xbktF6TNylM/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Retail &amp; Lifestyle</span>
+            <h3>The Fifth Design</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Personalized wedding gifts and homewares — product-led social
+              content for an Australian lifestyle brand.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card work-card--tall glass reveal" data-category="professional">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/z-ZN2UTyHwQ" target="_blank" rel="noopener noreferrer" aria-label="Watch Marley Jaxx on YouTube (opens in new tab)">
+          <div class="work-card-face wc-9 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/z-ZN2UTyHwQ/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Professional Services</span>
+            <h3>Marley Jaxx</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Personal-branding and content strategy for founders — built to
+              turn industry recognition into revenue.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card glass reveal" data-category="education">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/zyeqZQZGgHg" target="_blank" rel="noopener noreferrer" aria-label="Watch Oana Labes on YouTube (opens in new tab)">
+          <div class="work-card-face wc-8 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/zyeqZQZGgHg/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Education</span>
+            <h3>Oana Labes</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Social content for a finance educator, turning complex financial
+              topics into approachable video.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card glass reveal" data-category="professional">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/U_49C1i4OsQ" target="_blank" rel="noopener noreferrer" aria-label="Watch Marco on YouTube (opens in new tab)">
+          <div class="work-card-face wc-11 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/U_49C1i4OsQ/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Professional Services</span>
+            <h3>Marco</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Personal-branding content for a senior marketing professional,
+              built to stand out in a competitive job market.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="work-card glass reveal" data-category="partner">
+        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/NYoEq-wbPs8" target="_blank" rel="noopener noreferrer" aria-label="Watch FullStackRush on YouTube (opens in new tab)">
+          <div class="work-card-face wc-12 has-thumb">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/NYoEq-wbPs8/sddefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="work-tag">Agency Partner</span>
+            <h3>FullStackRush</h3>
+          </div>
+          <div class="work-card-overlay">
+            <p>Video editing delivered as an extension of their in-house team —
+              an agency partnership, not a one-off gig.</p>
+            <span class="work-card-visit">Watch on YouTube ↗</span>
+          </div>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
   <!-- ============ SERVICES ============ -->
   <section class="services" id="services" data-palette="services">
     <div class="section-head">
       <div class="section-head-top">
         <span class="section-head-line" aria-hidden="true"></span>
-        <span class="section-number dot-text">01</span>
+        <span class="section-number dot-text">02</span>
       </div>
       <h2 class="reveal">What we do</h2>
       <p class="section-sub reveal">Four disciplines, run as one team, so you're never
@@ -268,212 +468,6 @@
     </div>
   </section>
 
-  <!-- ============ WORK ============ -->
-  <section class="work" id="work" data-palette="work">
-    <div class="section-head">
-      <div class="section-head-top">
-        <span class="section-head-line" aria-hidden="true"></span>
-        <span class="section-number dot-text">02</span>
-      </div>
-      <h2 class="reveal">Selected clients</h2>
-      <p class="section-sub reveal">Real brands, real deliverables — not a portfolio
-        of concepts.</p>
-    </div>
-
-    <div class="work-filters glass reveal" id="work-filters" role="tablist" aria-label="Filter work by category">
-      <span class="filter-blob" id="filter-blob" aria-hidden="true"></span>
-      <button class="filter-btn is-active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="documentary">Documentary &amp; Travel</button>
-      <button class="filter-btn" data-filter="education">Education</button>
-      <button class="filter-btn" data-filter="tech">Tech &amp; SaaS</button>
-      <button class="filter-btn" data-filter="hospitality">Hospitality</button>
-      <button class="filter-btn" data-filter="retail">Retail &amp; Lifestyle</button>
-      <button class="filter-btn" data-filter="government">Government &amp; Civic</button>
-      <button class="filter-btn" data-filter="professional">Professional Services</button>
-      <button class="filter-btn" data-filter="partner">Agency Partner</button>
-    </div>
-
-    <div class="work-grid" id="work-grid">
-
-      <article class="work-card glass reveal" data-category="documentary">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/ZoOMuQ95bJ0" target="_blank" rel="noopener noreferrer" aria-label="Watch Nadir On The Go on YouTube (opens in new tab)">
-          <div class="work-card-face wc-1 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/ZoOMuQ95bJ0/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Documentary &amp; Travel</span>
-            <h3>Nadir On The Go</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Cinematic travel-documentary storytelling in English &amp; Bangla,
-              for a multi-million-follower audience.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--tall glass reveal" data-category="education">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/HXGepJP7idI" target="_blank" rel="noopener noreferrer" aria-label="Watch ALOHA Bangladesh on YouTube (opens in new tab)">
-          <div class="work-card-face wc-2 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/HXGepJP7idI/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Education</span>
-            <h3>ALOHA Bangladesh</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Nationally recognized mental-arithmetic and kids' brain-development
-              brand — social content that speaks to parents.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="tech">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/30SXLKrk9Ao" target="_blank" rel="noopener noreferrer" aria-label="Watch iinteca on YouTube (opens in new tab)">
-          <div class="work-card-face wc-3 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/30SXLKrk9Ao/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Tech &amp; SaaS</span>
-            <h3>iinteca</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Explainer videos for an AI-enabled SaaS platform serving Australian
-              service businesses.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--small glass reveal" data-category="hospitality">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/4Duj7L-xuYA" target="_blank" rel="noopener noreferrer" aria-label="Watch Sandy Land Hotel &amp; Resort on YouTube (opens in new tab)">
-          <div class="work-card-face wc-4 has-thumb">
-            <img class="work-card-thumb work-card-thumb--zoom" src="https://img.youtube.com/vi/4Duj7L-xuYA/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Hospitality</span>
-            <h3>Sandy Land Hotel &amp; Resort</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Social content built to drive direct bookings for a hospitality
-              brand.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="government">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/JJa0xWixd-E" target="_blank" rel="noopener noreferrer" aria-label="Watch Mayor Ella Winnall on YouTube (opens in new tab)">
-          <div class="work-card-face wc-7 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/JJa0xWixd-E/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Government &amp; Civic</span>
-            <h3>Mayor Ella Winnall</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Civic communications and social content for the mayoral office of
-              Berri Barmera Council, South Australia.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--wide glass reveal" data-category="tech">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/tjKMuzdjyxE" target="_blank" rel="noopener noreferrer" aria-label="Watch CWS Platform on YouTube (opens in new tab)">
-          <div class="work-card-face wc-5 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/tjKMuzdjyxE/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Tech &amp; SaaS</span>
-            <h3>CWS Platform</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Social content for a digital coupons and discounts platform,
-              helping retailers sell more online.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--tall glass reveal" data-category="retail">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/xbktF6TNylM" target="_blank" rel="noopener noreferrer" aria-label="Watch The Fifth Design on YouTube (opens in new tab)">
-          <div class="work-card-face wc-6 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/xbktF6TNylM/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Retail &amp; Lifestyle</span>
-            <h3>The Fifth Design</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Personalized wedding gifts and homewares — product-led social
-              content for an Australian lifestyle brand.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--tall glass reveal" data-category="professional">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/z-ZN2UTyHwQ" target="_blank" rel="noopener noreferrer" aria-label="Watch Marley Jaxx on YouTube (opens in new tab)">
-          <div class="work-card-face wc-9 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/z-ZN2UTyHwQ/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Professional Services</span>
-            <h3>Marley Jaxx</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Personal-branding and content strategy for founders — built to
-              turn industry recognition into revenue.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="education">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/zyeqZQZGgHg" target="_blank" rel="noopener noreferrer" aria-label="Watch Oana Labes on YouTube (opens in new tab)">
-          <div class="work-card-face wc-8 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/zyeqZQZGgHg/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Education</span>
-            <h3>Oana Labes</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Social content for a finance educator, turning complex financial
-              topics into approachable video.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="professional">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/U_49C1i4OsQ" target="_blank" rel="noopener noreferrer" aria-label="Watch Marco on YouTube (opens in new tab)">
-          <div class="work-card-face wc-11 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/U_49C1i4OsQ/maxresdefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Professional Services</span>
-            <h3>Marco</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Personal-branding content for a senior marketing professional,
-              built to stand out in a competitive job market.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="partner">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/NYoEq-wbPs8" target="_blank" rel="noopener noreferrer" aria-label="Watch FullStackRush on YouTube (opens in new tab)">
-          <div class="work-card-face wc-12 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/NYoEq-wbPs8/sddefault.jpg" alt="" loading="lazy">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Agency Partner</span>
-            <h3>FullStackRush</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Video editing delivered as an extension of their in-house team —
-              an agency partnership, not a one-off gig.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-    </div>
-  </section>
-
   <!-- ============ PROCESS ============ -->
   <section class="process" id="process" data-palette="process">
     <div class="section-head">
@@ -516,22 +510,13 @@
     </div>
   </section>
 
-  <!-- ============ STATEMENT + SHOWREEL ============ -->
+  <!-- ============ STATEMENT ============ -->
   <section class="statement" id="statement" data-palette="statement">
     <p class="statement-text" id="statement-text">
       We don't just build your <em>Social Media</em>.<br>
       We build the system for your <em>Posting</em>.
     </p>
 
-    <!-- MEDIA SLOT: showreel. Hidden until assets/media/showreel.mp4 exists. -->
-    <figure class="showreel glass slot slot--optional" data-slot="assets/media/showreel.mp4">
-      <video class="slot-media" src="assets/media/showreel.mp4" poster="assets/media/showreel-poster.jpg" muted loop playsinline preload="metadata"
-             onloadeddata="this.parentNode.classList.add('is-loaded')" onerror="this.remove()"></video>
-      <span class="showreel-play" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-      </span>
-      <span class="slot-label">showreel.mp4 (+ showreel-poster.jpg)</span>
-    </figure>
   </section>
 
   <!-- ============ TEAM ============ -->
@@ -547,7 +532,7 @@
     <div class="team-grid">
       <article class="team-card glass tilt reveal">
         <div class="team-photo" data-initials="MR">
-          <img src="assets/img/team/mustakim-ur-rashid.jpg" alt="Mustakim Ur Rashid" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()">
+          <img src="assets/img/team/mustakim-ur-rashid.jpg" alt="Mustakim Ur Rashid" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-empty');this.remove()">
         </div>
         <h3>Mustakim Ur Rashid</h3>
         <span class="team-role">Project Manager</span>
@@ -555,7 +540,7 @@
 
       <article class="team-card glass tilt reveal" style="transition-delay:.08s">
         <div class="team-photo" data-initials="LT">
-          <img src="assets/img/team/lekhon-taz.jpg" alt="Lekhon Taz" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()">
+          <img src="assets/img/team/lekhon-taz.jpg" alt="Lekhon Taz" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-empty');this.remove()">
         </div>
         <h3>Lekhon Taz</h3>
         <span class="team-role">Content Director</span>
@@ -575,7 +560,7 @@
   <section class="contact" id="contact" data-palette="contact">
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <span class="status-pill glass"><span class="status-dot"></span> Booking new clients</span>
+        <span class="status-pill glass"><span class="status-dot"></span> Book a meeting</span>
         <h2>Let's work together.</h2>
         <p>Tell us about your brand and where your content is stuck. We'll get
           back to you within one business day.</p>
@@ -648,8 +633,8 @@
     <div class="footer-cols">
       <div class="footer-col">
         <h4>Menu</h4>
-        <a href="#services">Services</a>
         <a href="#work">Work</a>
+        <a href="#services">Services</a>
         <a href="#team">Team</a>
         <a href="#contact">Contact</a>
       </div>

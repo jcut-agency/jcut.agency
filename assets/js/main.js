@@ -2,7 +2,6 @@
   "use strict";
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var finePointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)").matches;
   var root = document.documentElement;
   var body = document.body;
 
@@ -11,9 +10,6 @@
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function lerp(a, b, k) { return a + (b - a) * k; }
   function pad2(n) { return (n < 10 ? "0" : "") + n; }
-
-  /* add ?slots to the URL to see every media slot outlined + labelled */
-  if (/[?&]slots\b/.test(location.search)) body.classList.add("show-slots");
 
   var Liquid = function () { return window.JLiquid || { setPalette: function () {}, ripple: function () {}, setHue: function () {}, setBoost: function () {} }; };
 
@@ -63,6 +59,37 @@
   $$(".mq").forEach(function (el) {
     var txt = el.textContent;
     el.addEventListener("pointerenter", function () { scramble(el, txt, 520); });
+  });
+
+  /* ---------------- smooth anchor scrolling ---------------- */
+  var scrollAnim = null;
+  function stopScrollAnim() { if (scrollAnim) { cancelAnimationFrame(scrollAnim); scrollAnim = null; } }
+  function smoothScrollTo(y) {
+    stopScrollAnim();
+    var start = window.scrollY, dist = y - start;
+    if (Math.abs(dist) < 2) return;
+    if (reduceMotion) { window.scrollTo(0, y); return; }
+    var dur = clamp(Math.abs(dist) * 0.42, 550, 1400), t0 = performance.now();
+    (function step(now) {
+      var p = clamp((now - t0) / dur, 0, 1);
+      var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;      // ease in-out
+      window.scrollTo(0, start + dist * e);
+      if (p < 1) scrollAnim = requestAnimationFrame(step); else scrollAnim = null;
+    })(t0);
+  }
+  ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) {
+    window.addEventListener(ev, stopScrollAnim, { passive: true });          // the user takes over
+  });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var id = a.getAttribute("href");
+    if (!id || id.length < 2) return;
+    var target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    smoothScrollTo(id === "#top" ? 0 : target.getBoundingClientRect().top + window.scrollY);
+    if (history.pushState) history.pushState(null, "", id);
   });
 
   /* ---------------- scroll reveal ---------------- */
@@ -133,7 +160,11 @@
 
   /* ---------------- orbiting service dots + words ---------------- */
   var orbitEl = $(".orbit");
-  var orbit = { spin: 0, paused: false, last: performance.now(), R: 0, items: [] };
+  var orbit = { spin: 0, paused: false, last: performance.now(), R: 0, cx: 0, items: [], visible: true };
+  var heroSection = $("#top");
+  if (heroSection && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) { orbit.visible = entries[0].isIntersecting; }, { threshold: 0 }).observe(heroSection);
+  }
   if (orbitEl) {
     $$(".orbit .arm").forEach(function (arm) {
       var dot = $("i", arm);
@@ -150,16 +181,16 @@
   function measureOrbit() {
     if (!orbitEl) return;
     orbit.R = orbitEl.offsetWidth / 2;
+    orbit.cx = orbitEl.getBoundingClientRect().left + orbit.R;
     orbit.items.forEach(function (it) { it.w = it.em.offsetWidth; it.h = it.em.offsetHeight; });
-    updateOrbit(performance.now());
+    updateOrbit(performance.now(), true);
   }
-  function updateOrbit(now) {
-    if (!orbitEl) return;
+  function updateOrbit(now, force) {
+    if (!orbitEl || (!orbit.visible && !force)) { orbit.last = now; return; }
     var dt = Math.min(0.1, (now - orbit.last) / 1000);
     orbit.last = now;
     if (!orbit.paused && !reduceMotion) orbit.spin += dt * 360 / 34;    // one lap every 34s
-    var R = orbit.R;
-    var cxv = orbitEl.getBoundingClientRect().left + R;
+    var R = orbit.R, cxv = orbit.cx;
     orbit.items.forEach(function (it) {
       var th = (it.a + orbit.spin - 90) * Math.PI / 180;
       var ux = Math.cos(th), uy = Math.sin(th);
@@ -174,27 +205,38 @@
 
   /* ---------------- animated counters ---------------- */
   var counters = $$(".stat-number");
-  function animateCounter(el) {
+  function animateCounter(el, dur) {
     var target = parseInt(el.getAttribute("data-count"), 10) || 0;
     var suffix = el.getAttribute("data-suffix") || "";
     if (reduceMotion) { el.textContent = target + suffix; return; }
-    var t0 = null, dur = 1400;
+    var t0 = null;
+    dur = dur || 1400;
+    el._counting = true;
     (function step(ts) {
       if (!t0) t0 = ts;
       var p = Math.min((ts - t0) / dur, 1);
       el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;
-      if (p < 1) requestAnimationFrame(step);
+      if (p < 1) requestAnimationFrame(step); else el._counting = false;
     })(performance.now());
   }
+  // hover a stat card and its number counts up again
+  counters.forEach(function (el) {
+    var card = el.closest(".stat");
+    if (!card) return;
+    card.addEventListener("pointerenter", function (e) {
+      if (e.pointerType === "touch" || el._counting || !el.classList.contains("counted")) return;
+      animateCounter(el, 800);
+    });
+  });
   if (counters.length) {
     if ("IntersectionObserver" in window) {
       var cio = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) { animateCounter(entry.target); cio.unobserve(entry.target); }
+          if (entry.isIntersecting) { entry.target.classList.add("counted"); animateCounter(entry.target); cio.unobserve(entry.target); }
         });
       }, { threshold: 0.6 });
       counters.forEach(function (c) { cio.observe(c); });
-    } else counters.forEach(animateCounter);
+    } else counters.forEach(function (c) { c.classList.add("counted"); animateCounter(c); });
   }
 
   /* ---------------- statement: words light up as you scroll ---------------- */
@@ -240,12 +282,11 @@
   /* ---------------- per-frame loop: scroll-linked effects ---------------- */
   var sections = $$("[data-palette]");
   var marquee = $("#marquee");
-  var processTrack = $(".process-track");
   var processFill = $("#process-fill");
   var pHead = $("#process-head"), pBox = $("#process-pct-box"), pNum = $("#process-pct"), pStage = $("#process-stage");
   var pSteps = $$(".process-step");
   var STAGES = ["Kickoff", "Strategize", "Script", "Edit", "Publish"];
-  var pVal = 0, pTarget = 0, pHold = false, pShown = -1, pRailW = 0, pBoxW = 0;
+  var pVal = 0, pTarget = 0, pHold = false, pShown = -1, pRailW = 0, pBoxW = 0, pSettled = false;
   var lastY = window.scrollY, skew = 0, curPalette = "", curSection = null;
 
   function updateSection() {
@@ -270,6 +311,7 @@
   var pIndex = -1;
   function setProcessStep(n) {                 // n = 1..4, or 0 to release
     pHold = n > 0;
+    pSettled = false;
     pTarget = n * 25;                          // 0% whenever no step is hovered
     pSteps.forEach(function (el, i) { el.classList.toggle("is-active", n === i + 1); });
   }
@@ -282,6 +324,7 @@
   function updateProcess() {
     if (!processFill) return;
     if (!pHold) pTarget = 0;
+    if (pSettled && pVal === pTarget) return;                // nothing to animate
     var k = reduceMotion ? 1 : 0.14;
     pVal += (pTarget - pVal) * k;
     if (Math.abs(pTarget - pVal) < 0.05) pVal = pTarget;
@@ -299,6 +342,7 @@
     if (shown !== pShown) { pShown = shown; pNum.textContent = shown; }
 
     // stage name + "reached" steps follow the bar (tolerance so 25/50/75/100 read as their own stage)
+    pSettled = pVal === pTarget;
     var idx = Math.max(0, Math.min(4, Math.ceil(pVal / 25 - 0.04)));
     if (idx !== pIndex) {
       pIndex = idx;
@@ -307,23 +351,25 @@
       pSteps.forEach(function (el, i) { el.classList.toggle("is-done", pVal >= (i + 1) * 25 - 1); });
     }
   }
-  window.addEventListener("resize", function () { pRailW = 0; });
+  window.addEventListener("resize", function () { pRailW = 0; pSettled = false; statementDirty = true; });
 
-  var statementLit = -1;
+  var statementLit = -1, statementDirty = true, lastSkew = "";
   function loop() {
     var y = window.scrollY, vh = window.innerHeight;
     var dy = y - lastY;
     lastY = y;
 
     // marquee skews with scroll velocity
-    if (marquee && !reduceMotion) {
+    if (marquee && !reduceMotion && (dy !== 0 || skew !== 0)) {
       skew = lerp(skew, clamp(dy * 0.35, -9, 9), 0.12);
       if (Math.abs(skew) < 0.01) skew = 0;
-      marquee.style.transform = "skewX(" + skew.toFixed(2) + "deg)";
+      var sk = skew === 0 ? "" : "skewX(" + skew.toFixed(2) + "deg)";
+      if (sk !== lastSkew) { lastSkew = sk; marquee.style.transform = sk; }
     }
 
     // statement words
-    if (stWords.length && !reduceMotion) {
+    if (stWords.length && !reduceMotion && (dy !== 0 || statementDirty)) {
+      statementDirty = false;
       var sr = statement.getBoundingClientRect();
       var p = clamp((vh * 0.88 - sr.top) / (vh * 0.5 + sr.height * 0.3), 0, 1);
       var lit = Math.round(p * (stWords.length + 2) * 100) / 100;
@@ -395,8 +441,12 @@
     window.addEventListener("pointerup", function () { cursorEl.classList.remove("is-down"); });
   }
 
+  var cursorRest = false, lastPx = 0, lastPy = 0;
   function tickCursor() {
     if (!cursorSeen || !trail.length) return;
+    var still = px === lastPx && py === lastPy;
+    lastPx = px; lastPy = py;
+    if (still && cursorRest) { checkSleep(); return; }
     cursorEl.style.transform = "translate(" + px + "px," + py + "px)";
     for (var i = 0; i < trail.length; i++) {
       var tx = i === 0 ? px : pos[i - 1].x;
@@ -406,10 +456,16 @@
       pos[i].y += (ty - pos[i].y) * k;
       var ox = clamp(pos[i].x - px, -110, 110), oy = clamp(pos[i].y - py, -110, 110);
       trail[i].style.transform = "translate(" + ox.toFixed(1) + "px," + oy.toFixed(1) + "px)";
+      if (Math.abs(tx - pos[i].x) > 0.25 || Math.abs(ty - pos[i].y) > 0.25) still = false;
     }
+    cursorRest = still;
     labelEl.style.transform = "translate(" + pos[0].x.toFixed(1) + "px," + pos[0].y.toFixed(1) + "px) translate(-50%,-50%)";
 
-    // easter egg: idle for 20s and the cursor falls asleep
+    checkSleep();
+  }
+
+  // easter egg: idle for 20s and the cursor falls asleep
+  function checkSleep() {
     if (!sleeping && performance.now() - lastMove > 20000) {
       sleeping = true;
       cursorEl.classList.add("is-big");
@@ -420,25 +476,34 @@
   }
 
   /* ---------------- glass specular highlight follows the cursor ---------------- */
-  if (finePointer) {
+  {
+    var glassEv = null;
     document.addEventListener("pointermove", function (e) {
-      var g = e.target.closest && e.target.closest(".glass");
-      if (!g) return;
-      var r = g.getBoundingClientRect();
-      g.style.setProperty("--mx", (e.clientX - r.left) + "px");
-      g.style.setProperty("--my", (e.clientY - r.top) + "px");
+      if (e.pointerType === "touch") return;
+      var wasIdle = !glassEv;
+      glassEv = e;
+      if (wasIdle) requestAnimationFrame(function () {
+        var ev = glassEv; glassEv = null;
+        var g = ev.target.closest && ev.target.closest(".glass");
+        if (!g) return;
+        var r = g.getBoundingClientRect();
+        g.style.setProperty("--mx", (ev.clientX - r.left) + "px");
+        g.style.setProperty("--my", (ev.clientY - r.top) + "px");
+      });
     }, { passive: true });
   }
 
   /* ---------------- 3D tilt ---------------- */
-  if (finePointer && !reduceMotion) {
+  if (!reduceMotion) {
     $$(".tilt").forEach(function (el) {
       var isCardLink = el.classList.contains("work-card-link");
-      el.addEventListener("pointerenter", function () {
+      el.addEventListener("pointerenter", function (e) {
+        if (e.pointerType === "touch") return;
         el.style.transitionDelay = "0s";
         el.classList.add("is-tilting");
       });
       el.addEventListener("pointermove", function (e) {
+        if (e.pointerType === "touch") return;
         var r = el.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5;
         var y = (e.clientY - r.top) / r.height - 0.5;
@@ -458,6 +523,7 @@
     /* magnetic buttons */
     $$(".magnetic").forEach(function (el) {
       el.addEventListener("pointermove", function (e) {
+        if (e.pointerType === "touch") return;
         var r = el.getBoundingClientRect();
         var dx = e.clientX - (r.left + r.width / 2);
         var dy = e.clientY - (r.top + r.height / 2);
@@ -468,7 +534,6 @@
   }
 
   /* ---------------- work filter (FLIP morph) + liquid indicator ---------------- */
-  var filterWrap = $("#work-filters");
   var filterBlob = $("#filter-blob");
   var filterBtns = $$(".filter-btn");
   var workCards = $$(".work-card");
@@ -522,7 +587,7 @@
         card.style.transition = "none";
         card.style.transform = "";
         card.style.opacity = after ? "1" : "";
-        if (after) { card.classList.add("in-view"); card.style.filter = "none"; }
+        if (after) card.classList.add("in-view");
       });
       workGrid.classList.toggle("is-filtered", filter !== "all");
       workGrid.offsetHeight; // reflow so the new layout is measurable
@@ -553,7 +618,7 @@
         if (myToken !== filterToken) return;
         cards.forEach(function (card) {
           card.style.transition = ""; card.style.transform = ""; card.style.opacity = "";
-          card.style.transformOrigin = ""; card.style.filter = "";
+          card.style.transformOrigin = "";
         });
       }, MORPH_MS + 40);
     }, LEAVE_MS);
@@ -567,18 +632,6 @@
       applyWorkFilter(btn.getAttribute("data-filter"));
     });
   });
-
-  /* ---------------- showreel slot ---------------- */
-  var reel = $(".showreel");
-  if (reel) {
-    reel.addEventListener("click", function () {
-      var v = $("video", reel);
-      if (!v) return;
-      if (v.paused) { v.muted = false; v.play(); reel.classList.add("is-playing"); }
-      else { v.pause(); reel.classList.remove("is-playing"); }
-    });
-    reel.setAttribute("data-cursor", "Play");
-  }
 
   /* ---------------- dot wordmark (assembles itself, scatters from the cursor) ---------------- */
   function initDotWord(canvas, text, opts) {
@@ -627,25 +680,22 @@
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      var near = [], far = [];
-      for (var i = 0; i < pts.length; i++) {
-        (Math.abs(pts[i].x - pts[i].hx) + Math.abs(pts[i].y - pts[i].hy) > 5 ? far : near).push(pts[i]);
-      }
-      function paint(list, color) {
-        ctx.fillStyle = color;
+      // two passes (settled dots, then displaced ones in orange) without building any arrays
+      for (var pass = 0; pass < 2; pass++) {
+        ctx.fillStyle = pass ? "#ff4b2b" : "rgba(245,241,234,.92)";
         ctx.beginPath();
-        for (var j = 0; j < list.length; j++) {
-          ctx.moveTo(list[j].x + list[j].r, list[j].y);
-          ctx.arc(list[j].x, list[j].y, list[j].r, 0, 6.2832);
+        for (var i = 0; i < pts.length; i++) {
+          var p = pts[i];
+          if ((Math.abs(p.x - p.hx) + Math.abs(p.y - p.hy) > 5) !== !!pass) continue;
+          ctx.moveTo(p.x + p.r, p.y);
+          ctx.arc(p.x, p.y, p.r, 0, 6.2832);
         }
         ctx.fill();
       }
-      paint(near, "rgba(245,241,234,.92)");
-      paint(far, "#ff4b2b");
     }
 
     function step() {
-      var R = clamp(w * 0.22, 46, 95);
+      var R = clamp(w * 0.22, 46, 95), moving = false;
       for (var i = 0; i < pts.length; i++) {
         var p = pts[i];
         var dx = p.x - m.x, dy = p.y - m.y, d2 = dx * dx + dy * dy;
@@ -657,8 +707,16 @@
         p.vx += (p.hx - p.x) * 0.045; p.vy += (p.hy - p.y) * 0.045;
         p.vx *= 0.84; p.vy *= 0.84;
         p.x += p.vx; p.y += p.vy;
+        if (Math.abs(p.vx) > 0.02 || Math.abs(p.vy) > 0.02 || Math.abs(p.x - p.hx) > 0.05 || Math.abs(p.y - p.hy) > 0.05) moving = true;
       }
       draw();
+      return moving;
+    }
+
+    // the cursor is close enough to disturb the dots
+    function mouseNear() {
+      var R = clamp(w * 0.22, 46, 95);
+      return m.x > -R && m.x < w + R && m.y > -R && m.y < h + R;
     }
 
     function run() {
@@ -666,7 +724,8 @@
       running = true;
       (function frame() {
         if (!visible) { running = false; return; }
-        step();
+        var moving = step();
+        if (!moving && !mouseNear()) { running = false; return; }      // settled: stop drawing until something touches it
         requestAnimationFrame(frame);
       })();
     }
@@ -675,6 +734,7 @@
     window.addEventListener("pointermove", function (e) {
       var r = canvas.getBoundingClientRect();
       m.x = e.clientX - r.left; m.y = e.clientY - r.top;
+      if (built && visible && !running && mouseNear()) run();               // wake up
     }, { passive: true });
     document.addEventListener("mouseleave", function () { m.x = -999; m.y = -999; });
     window.addEventListener("pointerdown", function (e) {
@@ -686,6 +746,7 @@
         var f = 28 / (1 + d / 60);
         p.vx += (dx / d) * f; p.vy += (dy / d) * f;
       });
+      run();
     });
 
     if ("IntersectionObserver" in window) {
@@ -712,9 +773,10 @@
 
   /* glass orb drifts toward the cursor */
   var heroBlob = $(".hero-blob");
-  if (heroBlob && finePointer && !reduceMotion) {
+  if (heroBlob && !reduceMotion) {
     heroBlob.style.transition = "opacity .6s, transform .9s cubic-bezier(.22,1,.36,1)";
     window.addEventListener("pointermove", function (e) {
+      if (e.pointerType === "touch") return;
       var nx = e.clientX / window.innerWidth - 0.5, ny = e.clientY / window.innerHeight - 0.5;
       heroBlob.style.transform = "translate(" + (nx * 16).toFixed(1) + "px," + (ny * 12).toFixed(1) + "px)";
     }, { passive: true });

@@ -140,7 +140,11 @@
   });
 
   /* state */
-  var SCALE = 0.42;               // render at reduced resolution; the look is soft anyway
+  // Render at reduced resolution (the look is soft anyway). Phones get fewer pixels and a 30fps cap.
+  var LOW = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 800;
+  var SCALE = LOW ? 0.3 : 0.42;
+  var FRAME_MS = LOW ? 32 : 0;
+  var lastDraw = 0, prevNow = 0, slowFrames = 0;
   var cur = { c1: PALETTES.hero.c[0].slice(), c2: PALETTES.hero.c[1].slice(), c3: PALETTES.hero.c[2].slice(), i: 0.44 };
   var target = PALETTES.hero;
   var mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
@@ -172,6 +176,13 @@
   function lerp(a, b, k) { return a + (b - a) * k; }
 
   function frame(now) {
+    if (FRAME_MS && now - lastDraw < FRAME_MS - 3) { requestAnimationFrame(frame); return; }
+    lastDraw = now;
+    // safety net: if frames keep arriving slowly, quietly drop the resolution
+    var gap = now - prevNow; prevNow = now;
+    if (gap > 48 && gap < 500) {
+      if (++slowFrames > 24 && SCALE > 0.2) { SCALE = Math.max(0.2, SCALE * 0.8); slowFrames = 0; resize(); }
+    } else if (slowFrames > 0) slowFrames--;
     var dt = Math.min(0.05, (now - lastTs) / 1000);
     lastTs = now;
 
