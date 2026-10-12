@@ -5,15 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>J Cut — Social Content Agency</title>
 <meta name="description" content="J Cut is a full-stack social content agency: strategy, scripting, editing and scheduling for small business owners and creators.">
-<meta name="theme-color" content="#0c0c0e">
+<meta name="theme-color" content="#f2f1ee">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..900&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=3.3">
-<script>try{var t=localStorage.getItem("jcut-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=3.4">
+<!-- light is the default theme; a visitor who switched to dark keeps their choice -->
+<script>(function(){var t="light";try{t=localStorage.getItem("jcut-theme")||t;}catch(e){}document.documentElement.dataset.theme=t;if(t==="dark")document.querySelector("meta[name=theme-color]").content="#0c0c0e";})();</script>
 </head>
 <body>
 
@@ -229,7 +230,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="splice" id="splice" aria-hidden="true"><i></i><i></i></div>
 
-<script src="assets/js/main.js?v=3.3" defer></script>
-<script type="module" src="assets/js/galaxy.js?v=3.3"></script>
+<script src="assets/js/main.js?v=3.4" defer></script>
+<script type="module" src="assets/js/galaxy.js?v=3.4"></script>
 </body>
 </html>

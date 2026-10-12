@@ -400,6 +400,7 @@
   $("#theme").addEventListener("click", function () {
     var next = root.dataset.theme === "light" ? "dark" : "light";
     root.dataset.theme = next;
+    var tc = $("meta[name=theme-color]"); if (tc) tc.content = next === "light" ? "#f2f1ee" : "#0c0c0e";
     try { localStorage.setItem("jcut-theme", next); } catch (e) {}
   });
 
