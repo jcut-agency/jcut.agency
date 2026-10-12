@@ -1,663 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>J Cut — Social Content Agency, Dhaka</title>
-<meta name="description" content="J Cut is a full-stack social content agency: strategy, scripting, editing, and scheduling for small business owners and creators.">
-<meta name="theme-color" content="#0b0908">
+<title>J Cut — Social Content Agency</title>
+<meta name="description" content="J Cut is a full-stack social content agency: strategy, scripting, editing and scheduling for small business owners and creators.">
+<meta name="theme-color" content="#0c0c0e">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Doto:ROND,wght@0..100,100..900&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..900&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=3.3">
+<script>try{var t=localStorage.getItem("jcut-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
-<body class="is-loading">
+<body>
 
-<!-- SVG filters: gooey cursor -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <filter id="goo" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
       <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
       <feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/>
     </filter>
-    <filter id="lens" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
-      <feImage href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%20color-interpolation-filters%3D%22sRGB%22%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id%3D%22r%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23000%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f00%22%2F%3E%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%220%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23000%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230f0%22%2F%3E%3C%2FlinearGradient%3E%0A%3CradialGradient%20id%3D%22c%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23808080%22%20stop-opacity%3D%221%22%2F%3E%3Cstop%20offset%3D%22.55%22%20stop-color%3D%22%23808080%22%20stop-opacity%3D%22.85%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23808080%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%0A%3C%2Fdefs%3E%0A%3Crect%20width%3D%22256%22%20height%3D%22256%22%20fill%3D%22%23000%22%2F%3E%0A%3Crect%20width%3D%22256%22%20height%3D%22256%22%20fill%3D%22url(%23r)%22%2F%3E%0A%3Crect%20width%3D%22256%22%20height%3D%22256%22%20fill%3D%22url(%23g)%22%20style%3D%22mix-blend-mode%3Ascreen%22%2F%3E%0A%3Crect%20width%3D%22256%22%20height%3D%22256%22%20fill%3D%22url(%23c)%22%2F%3E%0A%3C%2Fsvg%3E" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="map"/>
-      <feDisplacementMap in="SourceGraphic" in2="map" scale="0.28" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
+    <symbol id="mark" viewBox="0 0 40 40">
+      <rect x="6" y="8" width="28" height="24" rx="6" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M23 12v9c0 3.2-2.6 4.6-5.6 4.6" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="17.4" cy="25.6" r="2.2" fill="var(--accent)"/>
+    </symbol>
   </defs>
 </svg>
 
-<!-- liquid background -->
-<canvas class="liquid" id="liquid" aria-hidden="true"></canvas>
-<div class="liquid-fallback" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-
-<!-- gooey cursor (fine pointers only) -->
-<div class="cursor" id="cursor" aria-hidden="true">
-  <i class="c"><b></b></i><i class="c"><b></b></i><i class="c"><b></b></i><i class="c"><b></b></i><i class="c"><b></b></i><i class="c"><b></b></i>
-</div>
-<span class="cursor-label" id="cursor-label" aria-hidden="true"></span>
-
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ============ TOP BAR ============ -->
-<header class="topbar" id="topbar">
-  <a href="#top" class="logo" id="logo" aria-label="J Cut — home">
-    <span class="logo-mark" aria-hidden="true">
-      <svg viewBox="0 0 40 40" width="30" height="30">
-        <rect x="6" y="8" width="28" height="24" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
-        <path d="M23 12v9c0 3.2-2.6 4.6-5.6 4.6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle class="logo-dot" cx="17.4" cy="25.6" r="2" fill="var(--accent)"/>
-      </svg>
-    </span>
-    <span class="logo-word" data-text="cut">cut</span>
-  </a>
+<!-- dotted cursor -->
+<div class="cursor" id="cursor" aria-hidden="true"><i class="c"><b></b></i><i class="c"><b></b></i><i class="c"><b></b></i><i class="c"><b></b></i><i class="c"><b></b></i><i class="c"><b></b></i></div>
+<span class="cursor-label" id="cursor-label" aria-hidden="true"></span>
 
-  <div class="status-chip" aria-label="Today's date">
-    <span class="status-dot" aria-hidden="true"></span> <time id="today"></time>
+<!-- page frame: two hairlines down the whole page -->
+
+<!-- side ruler: the page on a scale; drag or click it to move. The needle marks where you are. -->
+<div class="ruler" id="ruler" role="scrollbar" aria-controls="main" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Page position">
+  <div class="ruler-bg"></div>
+  <div class="ruler-strip" id="ruler-strip"></div>
+  <div class="ruler-band" id="ruler-band"></div>
+  <div class="needle" id="needle"><i></i><span class="odo" id="odo"></span></div>
+</div>
+<!-- section names that fly between the ruler and the top-right index -->
+<div class="fly" id="fly" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" id="logo" aria-label="J Cut, back to top"><svg width="30" height="30"><use href="#mark"/></svg></a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#top" class="is-active" data-sec="top">Home</a>
+    <a href="#work" data-sec="work">Work</a>
+    <a href="#services" data-sec="services">Services</a>
+    <a href="#team" data-sec="team">Team</a>
+  </nav>
+  <div class="nav-end">
+    <span class="nav-cell nav-date"><i class="dot"></i><time id="today">—</time></span>
+    <a class="nav-cell nav-icon" href="mailto:jcut.agency@gmail.com" aria-label="Email J Cut (jcut.agency@gmail.com)" title="jcut.agency@gmail.com">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+    </a>
+    <a class="nav-cell nav-icon" href="https://instagram.com/jcut.agency" target="_blank" rel="noopener" aria-label="J Cut on Instagram">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <button class="nav-cell nav-icon" id="theme" type="button" aria-label="Switch light or dark">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <button class="nav-cell nav-menu" id="menu-btn" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
 </header>
-
-<!-- ============ FLOATING PILL NAV ============ -->
-<nav class="pill glass" id="pill" aria-label="Primary">
-  <span class="pill-blob" id="pill-blob" aria-hidden="true"></span>
-  <a class="pill-mark" href="#top" aria-label="Back to top">
-    <svg viewBox="0 0 40 40" width="22" height="22" aria-hidden="true">
-      <rect x="6" y="8" width="28" height="24" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
-      <path d="M23 12v9c0 3.2-2.6 4.6-5.6 4.6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="17.4" cy="25.6" r="2" fill="var(--accent)"/>
-    </svg>
-  </a>
-  <a class="pill-link" href="#work" data-target="work">Work</a>
-  <a class="pill-link" href="#services" data-target="services">Services</a>
-  <a class="pill-link" href="#team" data-target="team">Team</a>
-  <a class="pill-link pill-cta" href="#contact" data-target="contact">Contact</a>
-</nav>
+<div class="sheet" id="sheet" hidden>
+  <a href="#work">Work</a><a href="#services">Services</a><a href="#team">Team</a><a href="#contact">Book a meeting</a>
+</div>
 
 <main id="main">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="top" data-palette="hero">
-    <div class="hero-stage">
-      <div class="hero-dots" aria-hidden="true">
-        <canvas id="hero-canvas"></canvas>
-      </div>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" data-name="J Cut">
+  <div class="orbit" id="orbit" aria-hidden="true"></div>
 
-      <svg class="hero-ring" viewBox="0 0 600 600" aria-hidden="true">
-        <circle cx="300" cy="300" r="298" fill="none" stroke="currentColor" stroke-width="1"/>
-      </svg>
-      <div class="orbit" role="list" aria-label="Services">
-        <b class="arm" data-a="0" role="listitem"><i tabindex="0" aria-label="Content strategy"><em>Strategy</em></i></b>
-        <b class="arm" data-a="90" role="listitem"><i tabindex="0" aria-label="Hooks and scripts"><em>Scripts</em></i></b>
-        <b class="arm" data-a="180" role="listitem"><i tabindex="0" aria-label="Story and video editing"><em>Story</em></i></b>
-        <b class="arm" data-a="270" role="listitem"><i tabindex="0" aria-label="Scheduling and publishing"><em>Scheduling</em></i></b>
-      </div>
-
-      <!-- liquid-glass orb -->
-      <div class="hero-blob" aria-hidden="true">
-        <span class="glass-orb"></span>
-      </div>
+  <div class="hero-copy">
+    <h1 class="wordmark" aria-label="J Cut"><span>J</span><span class="wm-cut">CUT</span></h1>
+    <p class="hero-line">Social content, <em>cut</em> to perform.</p>
+    <p class="hero-sub">The full stack of a content team, run for owners and<br>creators who don't have time to do it themselves.</p>
+    <div class="btn-row">
+      <a class="btn btn-solid" href="#contact">Book a meeting</a>
+      <a class="btn btn-line" href="#work">See our work</a>
     </div>
+    <p class="hero-note"><span>50+ clients</span><span>·</span><span>Short &amp; long form</span><span>·</span><span>Working worldwide</span></p>
+  </div>
+</section>
 
-    <div class="hero-copy">
-      <h1 class="hero-headline">
-        <span class="hero-line reveal">We cut the noise.</span>
-        <span class="hero-line reveal" style="transition-delay:.08s">You keep the
-          <span class="rotator" id="rotator" aria-live="off">
-            <span class="rotator-word is-current">Audience.</span>
-            <span class="rotator-word">Bookings.</span>
-            <span class="rotator-word">Customers.</span>
-            <span class="rotator-word">Followers.</span>
-          </span>
-        </span>
-      </h1>
-      <p class="hero-sub reveal" style="transition-delay:.2s">
-        Strategy, scripts, editing, and scheduling — the full stack of a content
-        team, run for you. Built for owners and creators who don't have time
-        to manage it themselves.
-      </p>
-      <div class="hero-ctas reveal" style="transition-delay:.3s">
-        <a href="#contact" class="btn btn-primary magnetic">Start a project</a>
-        <a href="#work" class="btn btn-ghost glass magnetic">See our work</a>
-      </div>
-    </div>
-  </section>
+<!-- ============ TICKER (full width, separates the hero from the framed page) ============ -->
+<div class="ticker" aria-label="What we do">
+  <div class="ticker-track">
+    <span>Content strategy</span><span>Hooks &amp; scripts</span><span>Storytelling</span><span>Video editing</span><span>Short form</span><span>Long form</span><span>Scheduling</span><span>Publishing</span><span>Personal branding</span><span>Explainers</span>
+    <span>Content strategy</span><span>Hooks &amp; scripts</span><span>Storytelling</span><span>Video editing</span><span>Short form</span><span>Long form</span><span>Scheduling</span><span>Publishing</span><span>Personal branding</span><span>Explainers</span>
+  </div>
+</div>
 
-  <!-- ============ TRUST MARQUEE ============ -->
-  <section class="marquee-section reveal" aria-label="Clients" data-palette="hero">
-    <div class="marquee-label">Trusted by</div>
-    <div class="marquee" id="marquee" role="list">
-      <div class="marquee-track" aria-hidden="false">
-        <span class="mq">Nadir On The Go</span><span aria-hidden="true">/</span>
-        <span class="mq">ALOHA Bangladesh</span><span aria-hidden="true">/</span>
-        <span class="mq">iinteca</span><span aria-hidden="true">/</span>
-        <span class="mq">Sandy Land Hotel &amp; Resort</span><span aria-hidden="true">/</span>
-        <span class="mq">CWS Platform</span><span aria-hidden="true">/</span>
-        <span class="mq">The Fifth Design</span><span aria-hidden="true">/</span>
-        <span class="mq">Marley Jaxx</span><span aria-hidden="true">/</span>
-        <span class="mq">Marco</span><span aria-hidden="true">/</span>
-        <span class="mq">FullStackRush</span><span aria-hidden="true">/</span>
-        <span class="mq">Oana Labes</span><span aria-hidden="true">/</span>
-        <span class="mq">Mayor Ella Winnall</span><span aria-hidden="true">/</span>
-        <span class="mq">Parish Patience</span><span aria-hidden="true">/</span>
-        <span class="mq">ESI Global</span><span aria-hidden="true">/</span>
-        <span class="mq">Btax</span><span aria-hidden="true">/</span>
-        <span class="mq">GRS Learning</span><span aria-hidden="true">/</span>
-        <span class="mq">Globeye</span><span aria-hidden="true">/</span>
-        <span class="mq">The Luggage Zing</span><span aria-hidden="true">/</span>
-        <span class="mq">Faith &amp; Freedom</span><span aria-hidden="true">/</span>
-        <span class="mq">Ari Teman</span><span aria-hidden="true">/</span>
-        <span class="mq">Jiovani</span><span aria-hidden="true">/</span>
-        <span class="mq">Anderson</span><span aria-hidden="true">/</span>
-      </div>
-      <div class="marquee-track" aria-hidden="true">
-        <span class="mq">Nadir On The Go</span><span aria-hidden="true">/</span>
-        <span class="mq">ALOHA Bangladesh</span><span aria-hidden="true">/</span>
-        <span class="mq">iinteca</span><span aria-hidden="true">/</span>
-        <span class="mq">Sandy Land Hotel &amp; Resort</span><span aria-hidden="true">/</span>
-        <span class="mq">CWS Platform</span><span aria-hidden="true">/</span>
-        <span class="mq">The Fifth Design</span><span aria-hidden="true">/</span>
-        <span class="mq">Marley Jaxx</span><span aria-hidden="true">/</span>
-        <span class="mq">Marco</span><span aria-hidden="true">/</span>
-        <span class="mq">FullStackRush</span><span aria-hidden="true">/</span>
-        <span class="mq">Oana Labes</span><span aria-hidden="true">/</span>
-        <span class="mq">Mayor Ella Winnall</span><span aria-hidden="true">/</span>
-        <span class="mq">Parish Patience</span><span aria-hidden="true">/</span>
-        <span class="mq">ESI Global</span><span aria-hidden="true">/</span>
-        <span class="mq">Btax</span><span aria-hidden="true">/</span>
-        <span class="mq">GRS Learning</span><span aria-hidden="true">/</span>
-        <span class="mq">Globeye</span><span aria-hidden="true">/</span>
-        <span class="mq">The Luggage Zing</span><span aria-hidden="true">/</span>
-        <span class="mq">Faith &amp; Freedom</span><span aria-hidden="true">/</span>
-        <span class="mq">Ari Teman</span><span aria-hidden="true">/</span>
-        <span class="mq">Jiovani</span><span aria-hidden="true">/</span>
-        <span class="mq">Anderson</span><span aria-hidden="true">/</span>
-      </div>
-    </div>
-  </section>
+<!-- ============ 01 WORK ============ -->
+<section class="sec" id="work" data-name="Work">
+  <div class="bar"><span><b>01</b> / Our work</span><span class="bar-r">Real deliverables — not concepts</span></div>
+  <div class="lead-block">
+    <h2 class="h2 reveal">The <em>final cut</em><span class="h-dot">.</span></h2>
+    <p class="lede reveal work-lede">From founders to hotels to civic offices, every frame below<br>was made for a real brand and went live on their channel.</p>
+  </div>
 
-  <!-- ============ STATS ============ -->
-  <section class="stats" id="stats" data-palette="services">
-    <div class="stats-grid">
-      <div class="stat glass tilt reveal">
-        <div class="stat-number dot-text" data-count="50" data-suffix="+">0</div>
-        <div class="stat-label">Clients served</div>
-      </div>
-      <div class="stat glass tilt reveal" style="transition-delay:.06s">
-        <div class="stat-number dot-text" data-count="400" data-suffix="+">0</div>
-        <div class="stat-label">Projects delivered</div>
-      </div>
-      <div class="stat glass tilt reveal" style="transition-delay:.12s">
-        <div class="stat-number dot-text" data-count="20" data-suffix="+">0</div>
-        <div class="stat-label">Brand collaborations</div>
-      </div>
-      <div class="stat glass tilt reveal" style="transition-delay:.18s">
-        <div class="stat-number dot-text" data-count="100" data-suffix="+">0</div>
-        <div class="stat-label">Successful deliveries</div>
-      </div>
-    </div>
-  </section>
+  <div class="roll reveal" aria-label="Clients">
+    <span class="roll-label">Trusted by</span>
+    <div class="roll-view" id="roll"><div class="roll-track" id="roll-track"></div></div>
+  </div>
 
-  <!-- ============ WORK ============ -->
-  <section class="work" id="work" data-palette="work">
-    <div class="section-head">
-      <div class="section-head-top">
-        <span class="section-head-line" aria-hidden="true"></span>
-        <span class="section-number dot-text">01</span>
-      </div>
-      <h2 class="reveal">Our recent client work</h2>
-      <p class="section-sub reveal">Real brands, real deliverables — not a portfolio
-        of concepts.</p>
-    </div>
+  <div class="grid grid-4 work-grid" id="work-grid"></div>
+</section>
 
-    <div class="work-filters glass reveal" id="work-filters" role="tablist" aria-label="Filter work by category">
-      <span class="filter-blob" id="filter-blob" aria-hidden="true"></span>
-      <button class="filter-btn is-active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="documentary">Documentary &amp; Travel</button>
-      <button class="filter-btn" data-filter="education">Education</button>
-      <button class="filter-btn" data-filter="tech">Tech &amp; SaaS</button>
-      <button class="filter-btn" data-filter="hospitality">Hospitality</button>
-      <button class="filter-btn" data-filter="retail">Retail &amp; Lifestyle</button>
-      <button class="filter-btn" data-filter="government">Government &amp; Civic</button>
-      <button class="filter-btn" data-filter="professional">Professional Services</button>
-      <button class="filter-btn" data-filter="partner">Agency Partner</button>
-    </div>
+<!-- ============ STATS ============ -->
+<section class="stats" aria-label="J Cut in numbers" data-name="Work">
+  <h2 class="h2 reveal">The work <em>so far.</em></h2>
+  <dl class="stat-row reveal">
+    <div class="stat"><dd><b data-count="50">0</b><i>+</i></dd><dt>Clients served</dt></div>
+    <div class="stat"><dd><b data-count="400">0</b><i>+</i></dd><dt>Projects delivered</dt></div>
+    <div class="stat"><dd><b data-count="20">0</b><i>+</i></dd><dt>Brand collaborations</dt></div>
+    <div class="stat"><dd><b data-count="100">0</b><i>+</i></dd><dt>Successful deliveries</dt></div>
+  </dl>
+</section>
 
-    <div class="work-grid" id="work-grid">
+<!-- ============ 02 SERVICES ============ -->
+<section class="sec" id="services" data-name="Services">
+  <div class="bar"><span><b>02</b> / Services</span><span class="bar-r">Four disciplines, one team · hover a step</span></div>
+  <div class="lead-block">
+    <h2 class="h2 reveal">Stop stitching <em>freelancers</em> together.</h2>
+    <p class="lede reveal wide-lede">Strategy, writing, editing and publishing run as one team,<br>so one post never needs three people chasing each other.</p>
+  </div>
+  <div class="meter" id="meter" aria-hidden="true">
+    <span class="meter-fill" id="meter-fill"></span>
+    <span class="meter-ticks"></span>
+    <span class="meter-read"><b class="m-pct">000</b>% · <em class="m-stage">Standing by</em></span>
+    <!-- the same readout in the page colour, revealed only where the bar sits under it -->
+    <span class="meter-inv"><span class="meter-read"><b class="m-pct">000</b>% · <em class="m-stage">Standing by</em></span></span>
+  </div>
+  <ol class="grid grid-4 steps" id="steps">
+    <li class="cell step" tabindex="0" data-pct="25" data-stage="Strategize"><div class="cell-head"><span>Strategy</span><span>01</span></div><svg class="svc-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 34 L18 20 L26 28 L40 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><rect x="37.5" y="7.5" width="5" height="5" fill="var(--accent)"/></svg><h3>Strategize</h3><p>Full content plans built around your goals: topics, formats and a cadence you can actually keep up with.</p></li>
+    <li class="cell step" tabindex="0" data-pct="50" data-stage="Script"><div class="cell-head"><span>Writing</span><span>02</span></div><svg class="svc-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 10 h20 l6 6 v22 h-26 z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M17 24 h14 M17 30 h14 M17 18 h8" stroke="currentColor" stroke-width="2"/><rect x="30" y="8" width="5" height="5" fill="var(--accent)"/></svg><h3>Script</h3><p>Scroll-stopping hooks and scripts in your voice, built to earn the first three seconds, then the rest.</p></li>
+    <li class="cell step" tabindex="0" data-pct="75" data-stage="Edit"><div class="cell-head"><span>Editing</span><span>03</span></div><svg class="svc-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="14" width="26" height="20" fill="none" stroke="currentColor" stroke-width="2"/><path d="M32 20 L42 14 V34 L32 28" fill="none" stroke="currentColor" stroke-width="2"/><rect x="9" y="17" width="5" height="5" fill="var(--accent)"/></svg><h3>Edit</h3><p>Story-first cuts, short and long form, made to hold attention, not just fill a timeline.</p></li>
+    <li class="cell step" tabindex="0" data-pct="100" data-stage="Publish"><div class="cell-head"><span>Publishing</span><span>04</span></div><svg class="svc-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="10" width="34" height="30" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 18 h34 M15 6 v8 M33 6 v8" stroke="currentColor" stroke-width="2"/><rect x="14" y="25" width="5" height="5" fill="currentColor"/><rect x="22" y="25" width="5" height="5" fill="currentColor"/><rect x="30" y="25" width="5" height="5" fill="var(--accent)"/></svg><h3>Publish</h3><p>Content calendar and posting handled end to end, so the work goes live, on time.</p></li>
+  </ol>
+</section>
 
-      <article class="work-card glass reveal" data-category="documentary">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/ZoOMuQ95bJ0" target="_blank" rel="noopener noreferrer" aria-label="Watch Nadir On The Go on YouTube (opens in new tab)">
-          <div class="work-card-face wc-1 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/ZoOMuQ95bJ0/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Documentary &amp; Travel</span>
-            <h3>Nadir On The Go</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Cinematic travel-documentary storytelling in English &amp; Bangla,
-              for a multi-million-follower audience.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
+<!-- ============ STATEMENT ============ -->
+<section class="statement" data-name="Services">
+  <p class="statement-text reveal">We don't just build your <em>social media</em>.<br>We build the system for your <em>posting</em>.</p>
+</section>
 
-      <article class="work-card work-card--tall glass reveal" data-category="education">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/HXGepJP7idI" target="_blank" rel="noopener noreferrer" aria-label="Watch ALOHA Bangladesh on YouTube (opens in new tab)">
-          <div class="work-card-face wc-2 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/HXGepJP7idI/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Education</span>
-            <h3>ALOHA Bangladesh</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Nationally recognized mental-arithmetic and kids' brain-development
-              brand — social content that speaks to parents.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
+<!-- ============ 03 TEAM ============ -->
+<section class="sec" id="team" data-name="Team">
+  <div class="bar"><span><b>03</b> / Team</span><span class="bar-r">Small team, full stack</span></div>
+  <div class="lead-block">
+    <h2 class="h2 reveal">The people behind <em>the cut.</em></h2>
+  </div>
+  <div class="grid grid-3 team">
+    <article class="cell person reveal">
+      <div class="cell-head"><span>Project Manager</span><span>01</span></div>
+      <div class="ph" data-initials="MR"><img src="assets/img/team/mustakim-ur-rashid.webp" width="640" height="800" decoding="async" alt="Mustakim Ur Rashid" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></div>
+      <h3>Mustakim Ur Rashid</h3>
+    </article>
+    <article class="cell person reveal">
+      <div class="cell-head"><span>Content Director</span><span>02</span></div>
+      <div class="ph" data-initials="LT"><img src="assets/img/team/lekhon-taz.webp" width="640" height="852" decoding="async" alt="Lekhon Taz" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></div>
+      <h3>Lekhon Taz</h3>
+    </article>
+    <article class="cell person reveal">
+      <div class="cell-head"><span>Social Media Manager</span><span>03</span></div>
+      <div class="ph is-empty" data-initials="MH"></div>
+      <h3>Maisha Hossain</h3>
+    </article>
+  </div>
+</section>
 
-      <article class="work-card glass reveal" data-category="tech">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/30SXLKrk9Ao" target="_blank" rel="noopener noreferrer" aria-label="Watch iinteca on YouTube (opens in new tab)">
-          <div class="work-card-face wc-3 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/30SXLKrk9Ao/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Tech &amp; SaaS</span>
-            <h3>iinteca</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Explainer videos for an AI-enabled SaaS platform serving Australian
-              service businesses.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--small glass reveal" data-category="hospitality">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/4Duj7L-xuYA" target="_blank" rel="noopener noreferrer" aria-label="Watch Sandy Land Hotel &amp; Resort on YouTube (opens in new tab)">
-          <div class="work-card-face wc-4 has-thumb">
-            <img class="work-card-thumb work-card-thumb--zoom" src="https://img.youtube.com/vi/4Duj7L-xuYA/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Hospitality</span>
-            <h3>Sandy Land Hotel &amp; Resort</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Social content built to drive direct bookings for a hospitality
-              brand.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="government">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/JJa0xWixd-E" target="_blank" rel="noopener noreferrer" aria-label="Watch Mayor Ella Winnall on YouTube (opens in new tab)">
-          <div class="work-card-face wc-7 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/JJa0xWixd-E/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Government &amp; Civic</span>
-            <h3>Mayor Ella Winnall</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Civic communications and social content for the mayoral office of
-              Berri Barmera Council, South Australia.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--wide glass reveal" data-category="tech">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/tjKMuzdjyxE" target="_blank" rel="noopener noreferrer" aria-label="Watch CWS Platform on YouTube (opens in new tab)">
-          <div class="work-card-face wc-5 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/tjKMuzdjyxE/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Tech &amp; SaaS</span>
-            <h3>CWS Platform</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Social content for a digital coupons and discounts platform,
-              helping retailers sell more online.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--tall glass reveal" data-category="retail">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/xbktF6TNylM" target="_blank" rel="noopener noreferrer" aria-label="Watch The Fifth Design on YouTube (opens in new tab)">
-          <div class="work-card-face wc-6 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/xbktF6TNylM/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Retail &amp; Lifestyle</span>
-            <h3>The Fifth Design</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Personalized wedding gifts and homewares — product-led social
-              content for an Australian lifestyle brand.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card work-card--tall glass reveal" data-category="professional">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtube.com/shorts/z-ZN2UTyHwQ" target="_blank" rel="noopener noreferrer" aria-label="Watch Marley Jaxx on YouTube (opens in new tab)">
-          <div class="work-card-face wc-9 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/z-ZN2UTyHwQ/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Professional Services</span>
-            <h3>Marley Jaxx</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Personal-branding and content strategy for founders — built to
-              turn industry recognition into revenue.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="education">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/zyeqZQZGgHg" target="_blank" rel="noopener noreferrer" aria-label="Watch Oana Labes on YouTube (opens in new tab)">
-          <div class="work-card-face wc-8 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/zyeqZQZGgHg/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Education</span>
-            <h3>Oana Labes</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Social content for a finance educator, turning complex financial
-              topics into approachable video.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="professional">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/U_49C1i4OsQ" target="_blank" rel="noopener noreferrer" aria-label="Watch Marco on YouTube (opens in new tab)">
-          <div class="work-card-face wc-11 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/U_49C1i4OsQ/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Professional Services</span>
-            <h3>Marco</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Personal-branding content for a senior marketing professional,
-              built to stand out in a competitive job market.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-      <article class="work-card glass reveal" data-category="partner">
-        <a class="work-card-link tilt" data-cursor="Play" href="https://youtu.be/NYoEq-wbPs8" target="_blank" rel="noopener noreferrer" aria-label="Watch FullStackRush on YouTube (opens in new tab)">
-          <div class="work-card-face wc-12 has-thumb">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/NYoEq-wbPs8/sddefault.jpg" alt="" loading="lazy" decoding="async">
-            <span class="video-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            <span class="work-tag">Agency Partner</span>
-            <h3>FullStackRush</h3>
-          </div>
-          <div class="work-card-overlay">
-            <p>Video editing delivered as an extension of their in-house team —
-              an agency partnership, not a one-off gig.</p>
-            <span class="work-card-visit">Watch on YouTube ↗</span>
-          </div>
-        </a>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ============ SERVICES ============ -->
-  <section class="services" id="services" data-palette="services">
-    <div class="section-head">
-      <div class="section-head-top">
-        <span class="section-head-line" aria-hidden="true"></span>
-        <span class="section-number dot-text">02</span>
-      </div>
-      <h2 class="reveal">What we do</h2>
-      <p class="section-sub reveal">Four disciplines, run as one team, so you're never
-        stitching together three freelancers to get one post out the door.</p>
-    </div>
-
-    <div class="services-list">
-      <article class="service-row glass reveal">
-        <div class="service-index dot-text">01</div>
-        <div class="service-body">
-          <h3>Content strategy</h3>
-          <p>Full content marketing plans built around your goals — topics, formats,
-            and a cadence you can actually keep up with.</p>
-        </div>
-        <div class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><path pathLength="1" d="M8 34 L18 20 L26 28 L40 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="10" r="2.5" fill="currentColor"/></svg>
-        </div>
-      </article>
-
-      <article class="service-row glass reveal">
-        <div class="service-index dot-text">02</div>
-        <div class="service-body">
-          <h3>Hooks &amp; scripts</h3>
-          <p>Scroll-stopping hooks and scripts written in your voice — built to earn
-            the first three seconds, then the rest.</p>
-        </div>
-        <div class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><path pathLength="1" d="M12 10 h20 l6 6 v22 h-26 z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path pathLength="1" d="M32 10 v6 h6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path pathLength="1" d="M17 24 h14 M17 30 h14 M17 18 h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-      </article>
-
-      <article class="service-row glass reveal">
-        <div class="service-index dot-text">03</div>
-        <div class="service-body">
-          <h3>Video editing</h3>
-          <p>Fast-paced, story-first edits — short form and long form — cut to hold
-            attention, not just fill a timeline.</p>
-        </div>
-        <div class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><rect pathLength="1" x="6" y="14" width="26" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><path pathLength="1" d="M32 20 L42 14 V34 L32 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
-        </div>
-      </article>
-
-      <article class="service-row glass reveal">
-        <div class="service-index dot-text">04</div>
-        <div class="service-body">
-          <h3>Scheduling &amp; publishing</h3>
-          <p>Content calendar and posting, handled end-to-end — so the work you paid
-            for actually goes live, on time.</p>
-        </div>
-        <div class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><rect pathLength="1" x="7" y="10" width="34" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><path pathLength="1" d="M7 18 h34 M15 6 v8 M33 6 v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="17" cy="27" r="2" fill="currentColor"/><circle cx="24" cy="27" r="2" fill="currentColor"/><circle cx="31" cy="27" r="2" fill="currentColor"/></svg>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============ PROCESS ============ -->
-  <section class="process" id="process" data-palette="process">
-    <div class="section-head">
-      <div class="section-head-top">
-        <span class="section-head-line" aria-hidden="true"></span>
-        <span class="section-number dot-text">03</span>
-      </div>
-      <h2 class="reveal">How the project runs</h2>
-    </div>
-
-    <div class="process-track">
-      <div class="process-rail" aria-hidden="true">
-        <span class="process-line"><i id="process-fill"></i></span>
-        <span class="process-head" id="process-head">
-          <b class="process-pct" id="process-pct-box"><span class="dot-text"><span id="process-pct">0</span>%</span><em id="process-stage">Kickoff</em></b>
-        </span>
-      </div>
-      <ol class="process-list">
-        <li class="process-step glass tilt reveal" tabindex="0">
-          <span class="process-step-number dot-text">01</span>
-          <h3>Strategize</h3>
-          <p>We map your goals to topics, formats, and a cadence.</p>
-        </li>
-        <li class="process-step glass tilt reveal" tabindex="0">
-          <span class="process-step-number dot-text">02</span>
-          <h3>Script</h3>
-          <p>Hooks and scripts written in your voice, ready to shoot.</p>
-        </li>
-        <li class="process-step glass tilt reveal" tabindex="0">
-          <span class="process-step-number dot-text">03</span>
-          <h3>Edit</h3>
-          <p>Story-first cuts, short and long form, built to hold attention.</p>
-        </li>
-        <li class="process-step glass tilt reveal" tabindex="0">
-          <span class="process-step-number dot-text">04</span>
-          <h3>Publish</h3>
-          <p>Calendared and posted — end to end, on time.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ STATEMENT ============ -->
-  <section class="statement" id="statement" data-palette="statement">
-    <p class="statement-text" id="statement-text">
-      We don't just build your <em>Social Media</em>.<br>
-      We build the system for your <em>Posting</em>.
-    </p>
-
-  </section>
-
-  <!-- ============ TEAM ============ -->
-  <section class="team" id="team" data-palette="team">
-    <div class="section-head">
-      <div class="section-head-top">
-        <span class="section-head-line" aria-hidden="true"></span>
-        <span class="section-number dot-text">04</span>
-      </div>
-      <h2 class="reveal">The Team</h2>
-    </div>
-
-    <div class="team-grid">
-      <article class="team-card glass tilt reveal">
-        <div class="team-photo" data-initials="MR">
-          <img src="assets/img/team/mustakim-ur-rashid.jpg" alt="Mustakim Ur Rashid" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-empty');this.remove()">
-        </div>
-        <h3>Mustakim Ur Rashid</h3>
-        <span class="team-role">Project Manager</span>
-      </article>
-
-      <article class="team-card glass tilt reveal" style="transition-delay:.08s">
-        <div class="team-photo" data-initials="LT">
-          <img src="assets/img/team/lekhon-taz.jpg" alt="Lekhon Taz" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-empty');this.remove()">
-        </div>
-        <h3>Lekhon Taz</h3>
-        <span class="team-role">Content Director</span>
-      </article>
-
-      <article class="team-card glass tilt reveal" style="transition-delay:.16s">
-        <div class="team-photo">
-          <span class="team-initial dot-text" aria-hidden="true">MH</span>
-        </div>
-        <h3>Maisha Hossain</h3>
-        <span class="team-role">Social Media Manager</span>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section class="contact" id="contact" data-palette="contact">
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <span class="status-pill glass"><span class="status-dot"></span> Book a meeting</span>
-        <h2>Let's work together.</h2>
-        <p>Tell us about your brand and where your content is stuck. We'll get
-          back to you within one business day.</p>
-
-        <ul class="contact-list">
-          <li>
-            <span class="contact-label">Email</span>
-            <a href="mailto:jcut.agency@gmail.com">jcut.agency@gmail.com</a>
-          </li>
-          <li>
-            <span class="contact-label">Based in</span>
-            <span>Dhaka, Bangladesh</span>
-          </li>
-          <li>
-            <span class="contact-label">Instagram</span>
-            <a href="https://instagram.com/jcut.agency" target="_blank" rel="noopener">@jcut.agency</a>
-          </li>
-        </ul>
-      </div>
-
-      <form class="contact-form glass reveal" id="contact-form" style="transition-delay:.1s">
+<!-- ============ CONTACT ============ -->
+<section class="sec contact" id="contact" data-name="Contact">
+  <div class="bar"><span><b>04</b> / Contact</span><span class="bar-r">Reply within one business day</span></div>
+  <div class="cta-block">
+    <p class="kicker"><i class="dot"></i>Booking new clients</p>
+    <h2 class="h1 reveal">Let's <em>work</em> together.</h2>
+    <p class="lede reveal contact-lede">Tell us about your brand and where your content is stuck.<br>We'll get back to you within one business day.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="booking">
+      <div class="booking-bar"><span>Book a meeting with us</span><span>Reply within one business day</span></div>
+      <form class="booking-form" id="contact-form">
         <input type="hidden" name="access_key" value="2043d42b-2362-42ce-9584-aef0016d5784">
-        <input type="hidden" name="subject" value="New project inquiry — J Cut website">
+        <input type="hidden" name="subject" value="New meeting request — J Cut website">
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-        <div class="field">
-          <label for="cf-name">Name</label>
-          <input type="text" id="cf-name" name="name" autocomplete="name" required>
+        <div class="bf-row">
+          <label class="bf"><span>Your name</span><input type="text" name="name" autocomplete="name" placeholder="e.g. Sarah Khan" required></label>
+          <label class="bf"><span>Your email</span><input type="email" name="email" autocomplete="email" placeholder="you@yourbrand.com" required></label>
         </div>
-        <div class="field">
-          <label for="cf-email">Email</label>
-          <input type="email" id="cf-email" name="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="cf-brand">Brand / company</label>
-          <input type="text" id="cf-brand" name="brand" autocomplete="organization">
-        </div>
-        <div class="field">
-          <label for="cf-message">What do you need?</label>
-          <textarea id="cf-message" name="message" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-full magnetic">
-          <span class="btn-label">Send message</span> <span class="btn-arrow" aria-hidden="true">→</span>
-        </button>
+        <label class="bf"><span>Brand, website or Instagram</span><input type="text" name="brand" autocomplete="organization" placeholder="@yourbrand or yourbrand.com"></label>
+        <label class="bf"><span>What do you need help with?</span><textarea name="message" rows="4" placeholder="Tell us a little about your content and what you'd like to change." required></textarea></label>
+        <button type="submit" class="btn btn-solid btn-wide"><span class="btn-label">Request a meeting</span><span aria-hidden="true">→</span></button>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="site-footer" id="footer" data-palette="footer">
-  <div class="footer-body">
-    <div class="footer-top">
-      <a href="#top" class="logo footer-logo">
-        <span class="logo-mark" aria-hidden="true">
-          <svg viewBox="0 0 40 40" width="26" height="26">
-            <rect x="6" y="8" width="28" height="24" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M23 12v9c0 3.2-2.6 4.6-5.6 4.6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="17.4" cy="25.6" r="2" fill="var(--accent)"/>
-          </svg>
-        </span>
-        <span class="logo-word" data-text="cut">cut</span>
-      </a>
-      <p class="footer-blurb">A full-stack social content agency — strategy,
-        scripting, editing, and scheduling for small business owners and
-        creators. Based in Dhaka, Bangladesh.</p>
+<footer class="foot" data-name="Contact">
+  <div class="grid foot-grid">
+    <div class="cell foot-brand">
+      <svg width="40" height="40"><use href="#mark"/></svg>
+      <p>A full-stack social content agency. Strategy, scripting, editing and scheduling for small business owners and creators.</p>
+      <a class="mono" href="mailto:jcut.agency@gmail.com">jcut.agency@gmail.com</a>
     </div>
-
-    <div class="footer-cols">
-      <div class="footer-col">
-        <h4>Menu</h4>
-        <a href="#work">Work</a>
-        <a href="#services">Services</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:jcut.agency@gmail.com">jcut.agency@gmail.com</a>
-        <a href="https://instagram.com/jcut.agency" target="_blank" rel="noopener">@jcut.agency</a>
-        <span>Dhaka, Bangladesh</span>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; <span id="year" role="button" tabindex="0" aria-label="Year">2026</span> J Cut. All rights reserved.</p>
-      <p class="footer-status"><span class="status-dot"></span> Booking new clients</p>
-    </div>
+    <div class="cell"><h4>Menu</h4><a href="#work">Work</a><a href="#services">Services</a><a href="#team">Team</a></div>
+    <div class="cell"><h4>Contact</h4><a href="mailto:jcut.agency@gmail.com">Email</a><a href="https://instagram.com/jcut.agency" target="_blank" rel="noopener">Instagram</a><a href="#contact">Book a meeting</a></div>
+    <div class="cell"><h4>Studio</h4><span>Working worldwide</span><span>Short &amp; long form</span><span>EN · বাং</span></div>
   </div>
+  <div class="foot-bottom"><span>© <button type="button" id="year">2026</button> J Cut</span><span>Cut for creators, everywhere</span></div>
 </footer>
 
-<!-- easter-egg toast + splice overlay -->
-<div class="toast glass" id="toast" role="status" aria-live="polite"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="splice" id="splice" aria-hidden="true"><i></i><i></i></div>
 
-<script src="assets/js/liquid.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=3.3" defer></script>
+<script type="module" src="assets/js/galaxy.js?v=3.3"></script>
 </body>
 </html>

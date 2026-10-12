@@ -1,46 +1,28 @@
-# J Cut — Website
+# J Cut — Website (v3)
 
-Single-page marketing site for J Cut, a social content agency in Dhaka.
-Plain HTML/CSS/JS, no build step, deploys to GitHub Pages as-is.
+Single-page site for J Cut, a social content agency. Plain HTML/CSS/JS, no build step, served by GitHub Pages at **jcut.space** (keep the `CNAME` file).
 
 ```
 index.html
 assets/
   css/style.css
-  js/liquid.js     WebGL background (soft morphing blobs, palette per section)
-  js/main.js       cursor, glass effects, filters, dot wordmark, easter eggs, form
-  img/             favicon + team photos
+  js/main.js                 page: work grid, side ruler + flying section names, dotted wordmark,
+                             client roll, services meter, cursor, contact form, easter eggs
+  js/galaxy.js               hero spiral (three.js, a port of ArtCraft's galaxy)
+  vendor/three.galaxy.min.js three.js r170 trimmed to the classes galaxy.js uses
+  img/                       favicon + team photos (WebP)
 ```
+
+The previous design is kept on the `v2-backup` branch.
+
+## Updating
+
+Edit the files, then bump the `?v=` number on the three asset links in `index.html` so returning visitors get the new files.
+
+If `galaxy.js` starts using a `THREE.*` class that isn't in `assets/vendor/three.galaxy.min.js`, rebuild that file with esbuild from `three@0.170.0`, exporting the classes `galaxy.js` uses.
 
 ## Preview locally
 
-```bash
+```
 npx serve .
 ```
-
-## Deploying
-
-Upload the changed files to the GitHub repo (Add file → Upload files, keeping the
-`assets/…` folders). Keep the repo's `CNAME` file — it holds the custom domain.
-
-## Performance notes
-
-- Only 5 elements use `backdrop-filter` (nav pill, top-bar chips, glass orb, process meter).
-  Content panels use a translucent fill instead, so the moving background isn't re-blurred
-  under dozens of layers every frame.
-- The background shader renders at reduced resolution (30% + 30fps cap on phones, 42% on
-  desktop) and lowers its own resolution if frames run slow.
-- The dot wordmark, the orbiting words, the process timeline and the cursor all stop doing
-  work when nothing is moving or they're off-screen.
-- No hover effects run for touch input; everything respects `prefers-reduced-motion`.
-
-## Adding a hero portrait or showreel later
-
-The hero currently shows the glass orb. To use a photo or video instead, ask for the
-portrait/showreel slots to be added back and drop the files into `assets/media/`.
-
-## Contact form
-
-Posts to [Web3Forms](https://web3forms.com) (`assets/js/main.js`, "contact form" section). The
-access key in `index.html` is public by design. The form's "Website URL" in the Web3Forms
-dashboard should be `jcut.space`.
